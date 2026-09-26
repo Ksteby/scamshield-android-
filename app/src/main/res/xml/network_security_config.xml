@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+
+    <!-- Permette le comunicazioni HTTP durante il test locale. -->
+    <base-config cleartextTrafficPermitted="true" />
+
+</network-security-config>

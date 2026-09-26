@@ -1,0 +1,60 @@
+# ==========================================
+# Android Studio / IntelliJ
+# ==========================================
+.idea/
+*.iml
+
+# ==========================================
+# Gradle
+# ==========================================
+.gradle/
+build/
+*/build/
+
+# ==========================================
+# Android local configuration
+# ==========================================
+local.properties
+
+# ==========================================
+# Android generated files
+# ==========================================
+.externalNativeBuild/
+.cxx/
+captures/
+
+# ==========================================
+# Python
+# ==========================================
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# ==========================================
+# Operating system files
+# ==========================================
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Logs
+# ==========================================
+*.log
+
+# ==========================================
+# Local project documents
+# ==========================================
+Relazione_Kemo.pdf
+
+# ==========================================
+# ScamShield datasets
+# ==========================================
+ml/data/italian_sms.csv
+ml/data/sms+spam+collection/
+ml/data/sms+spam+collection.zip
+
+# Old experiment results
+ml/data/test_results.csv
+ml/data/test_results_hybrid.csv

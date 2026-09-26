@@ -1,0 +1,26 @@
+{
+    "alpha": 0.997,
+    "rule_weight": 0.0030000000000000027,
+    "threshold": 0.38918278262448297,
+    "tfidf_word": {
+        "lowercase": true,
+        "analyzer": "word",
+        "ngram_range": [
+            1,
+            2
+        ],
+        "min_df": 2,
+        "max_df": 0.95
+    },
+    "tfidf_char": {
+        "lowercase": true,
+        "analyzer": "char",
+        "ngram_range": [
+            3,
+            5
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "sublinear_tf": true
+    }
+}

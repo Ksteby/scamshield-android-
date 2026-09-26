@@ -1,0 +1,14 @@
+{
+    "alpha": 0.861,
+    "rule_weight": 0.139,
+    "threshold": 0.3739060353979776,
+    "tfidf": {
+        "lowercase": true,
+        "ngram_range": [
+            1,
+            2
+        ],
+        "min_df": 2,
+        "max_df": 0.95
+    }
+}
