@@ -337,6 +337,26 @@ Possible future developments include:
 - Automated ML model deployment
 - Continuous model evaluation
 
+## 📸 Screenshots
+
+### Message Scanner
+
+![ScamShield Scanner](screenshots/scanner.png)
+
+### Message Analysis
+
+![Message Analysis](screenshots/message-analysis.png)
+![Suspicious Message Analysis](screenshots/scam-message-analysis.png)
+
+### Safe Message Detection
+
+![Safe Message Result](screenshots/safe-result.png)
+
+### Suspicious Message Detection
+
+![Scam Message Result](screenshots/scam-result.png)
+
+
 ## 15. Author
 
 ### Kemo Touohou Steby
