@@ -130,11 +130,12 @@ The final score is obtained by combining the Machine Learning model and the Rule
 
 ### Final Test Results
 
-Metric	  |  ML Model	 |   Hybrid V3 System
-Accuracy	|   96.61%	 |   97.34%
-Precision	|   98.21%	 |   96.99%
-Recall	  |   89.82%	 |   93.64%
-F1-score  | 	93.83%	 |   95.28%
+| Metric | ML Model | Hybrid V3 System |
+|---|---:|---:|
+| Accuracy | 96.61% | **97.34%** |
+| Precision | 98.21% | **96.99%** |
+| Recall | 89.82% | **93.64%** |
+| F1-score | 93.83% | **95.28%** |
 
 The system uses a decision threshold of approximately 38.92/100.
 
