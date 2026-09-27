@@ -1,51 +1,65 @@
-# ScamShield
+# 🛡️ ScamShield
 
-## 1. Descrizione del progetto
+> Android application for detecting potentially fraudulent messages using a hybrid Machine Learning and rule-based approach.
 
-ScamShield è un'applicazione Android sviluppata in Kotlin con
-l'obiettivo di aiutare l'utente a riconoscere messaggi potenzialmente
-fraudolenti.
+## 1. Project Overview
 
-L'applicazione analizza il contenuto di un messaggio e restituisce un
-**punteggio di rischio da 0 a 100**, accompagnato da un livello di
-rischio e da indicazioni utili per l'utente.
+ScamShield is an Android application developed in Kotlin to help users identify potentially fraudulent or suspicious messages.
 
-Il progetto integra un sistema di analisi ibrido basato su Machine
-Learning e analisi a regole.
+The application analyzes the content of a message and returns a **risk score from 0 to 100**, together with a risk level and useful recommendations for the user.
 
-Le principali caratteristiche sono: - analisi offline sul dispositivo; -
-analisi online tramite REST API; - classificazione di messaggi in
-italiano e inglese; - ricezione di testo tramite il menu Condividi di
-Android.
+The project implements a hybrid analysis system combining:
 
-## 2. Funzionalità principali
+- Machine Learning
+- Rule-based analysis
 
-### Analisi offline
+### Main features
 
-La modalità offline utilizza il modello V3 integrato negli assets
-dell'applicazione. Il messaggio viene analizzato direttamente sul
-dispositivo e non è necessaria una connessione Internet.
+- 📱 Offline analysis directly on the device
+- 🌐 Online analysis through a REST API
+- 🇬🇧 Support for English messages
+- 🇮🇹 Support for Italian messages
+- 📤 Message reception through the Android Share menu
+- 📊 Risk score and detected suspicious signals
 
-### Analisi online
+---
 
-La modalità online invia il messaggio a un server FastAPI tramite
-Retrofit. Il server utilizza lo stesso modello V3 della modalità
-offline.
+## 2. Main Features
 
-### Condivisione di messaggi
+### Offline Analysis
 
-ScamShield può ricevere un messaggio tramite il normale menu
-**Condividi** di Android.
+The offline mode uses the **V3 model** integrated into the application's assets.
 
-### Risultato
+The message is analyzed directly on the Android device, so no Internet connection is required.
 
-L'app mostra: - punteggio di rischio da 0 a 100; - livello di rischio; -
-classificazione del messaggio; - spiegazione generale; - segnali
-sospetti rilevati; - consigli sul comportamento da adottare.
+### Online Analysis
 
-## 3. Architettura
+The online mode sends the message to a **FastAPI server** through Retrofit.
 
-``` text
+The server uses the same V3 model as the offline mode.
+
+### Message Sharing
+
+ScamShield can receive a message through Android's standard **Share** menu.
+
+This allows users to send text from another application directly to ScamShield for analysis.
+
+### Analysis Result
+
+The application displays:
+
+- Risk score from 0 to 100
+- Risk level
+- Message classification
+- General explanation
+- Detected suspicious signals
+- Recommendations for the user
+
+---
+
+## 3. Architecture
+
+```text
 ScannerScreen
       ↓
 ScannerViewModel
@@ -65,85 +79,110 @@ HybridAnalyzer  ↓                 │
           AnalysisResult
                  ↓
            ResultScreen
-```
 
-La modalità offline e la modalità online utilizzano lo stesso modello
-V3, permettendo di ottenere risultati coerenti.
+The offline and online modes use the same V3 model, allowing the two modes to produce consistent analysis results.
 
 ## 4. Machine Learning
 
-### Dataset
+Dataset
 
-Il dataset combinato contiene **9.572 messaggi**: - 6.825 messaggi
-ham; - 2.747 messaggi spam.
+The combined dataset contains 9,572 messages:
 
-Sono stati utilizzati messaggi in lingua inglese e italiana.
+6,825 legitimate messages (ham)
+2,747 spam messages
 
-Il dataset è stato suddiviso in: - 80% sviluppo; - 20% test finale
-indipendente.
+The dataset contains messages in both English and Italian.
 
-### Modello V3
+The dataset was divided into:
 
-La versione finale utilizza due rappresentazioni complementari del
-testo:
+80% development data
+20% independent final test set
+V3 Model
 
-1.  **Word TF-IDF**
-    -   unigrammi e bigrammi;
-    -   `ngram_range=(1,2)`.
-2.  **Character TF-IDF**
-    -   n-grammi di caratteri da 3 a 5;
-    -   `sublinear_tf=True`.
+The final V3 system uses two complementary text representations.
 
-Le due rappresentazioni vengono concatenate e utilizzate da una
-**Logistic Regression**.
+1. Word TF-IDF
+Unigrams and bigrams
+ngram_range=(1,2)
+2. Character TF-IDF
+Character n-grams from 3 to 5
+sublinear_tf=True
 
-In parallelo viene utilizzato un **Rule Analyzer** basato su 14 feature.
-Tra i segnali considerati: - urgenza; - richieste d'azione; -
-informazioni monetarie; - informazioni sensibili; - URL; - contatti; -
-numeri di telefono; - interazioni tra segnali.
+The two representations are concatenated and used by a Logistic Regression classifier.
 
-Il punteggio finale è ottenuto combinando il modello ML e il Rule
-Analyzer.
+In parallel, the system uses a Rule Analyzer based on 14 features.
 
-### Risultati sul test finale
+The analyzed signals include:
 
-  Metrica       Modello ML   Sistema ibrido V3
-  ----------- ------------ -------------------
-  Accuracy          96,61%          **97,34%**
-  Precision         98,21%          **96,99%**
-  Recall            89,82%          **93,64%**
-  F1-score          93,83%          **95,28%**
+Urgency
+Action requests
+Monetary information
+Sensitive information
+URLs
+Contact information
+Phone numbers
+Interactions between different signals
 
-La soglia utilizzata dal sistema è circa **38,92/100**.
+The final score is obtained by combining the Machine Learning model and the Rule Analyzer.
 
-## 5. Tecnologie utilizzate
+Final Test Results
+Metric	ML Model	Hybrid V3 System
+Accuracy	96.61%	97.34%
+Precision	98.21%	96.99%
+Recall	89.82%	93.64%
+F1-score	93.83%	95.28%
 
-### Android
+The system uses a decision threshold of approximately 38.92/100.
 
--   Kotlin
--   Android Studio
--   Jetpack Compose
--   Material 3
--   ViewModel
--   Retrofit
--   Gson
--   Android Intent / Share
--   Assets locali
+Note: the displayed score represents the system's risk score and should not be interpreted as a calibrated probability that a message is actually fraudulent.
 
-### Machine Learning e server
+## 5. Technologies
 
--   Python
--   FastAPI
--   Uvicorn
--   NumPy
--   SciPy
--   Scikit-learn
--   Pandas
--   Regular Expressions
+-Android
+-Kotlin
+-Android Studio
+-Jetpack Compose
+-Material 3
+-ViewModel
+-Retrofit
+-Gson
+-Android Intent / Share
+-Local application assets
+-Machine Learning & Backend
+-Python
+-FastAPI
+-Uvicorn
+-NumPy
+-SciPy
+-Scikit-learn
+-Pandas
+-Regular Expressions
+-Development & Engineering
+-Git
+-GitHub
+-REST API
+-Gradle
 
-## 6. Struttura principale
+## 6. Skills Demonstrated
 
-``` text
+This project demonstrates practical experience in:
+
+-Android application development
+-Kotlin and Jetpack Compose
+-Software architecture
+-Natural Language Processing (NLP)
+-Supervised Machine Learning
+-Text feature engineering
+-TF-IDF representations
+-Classification models
+-Model evaluation
+-Integration of ML models into mobile applications
+-REST API development
+-Android ↔ API communication
+-Git and GitHub
+
+## 7. Project structure
+
 ScamShield/
 ├── app/
 │   └── src/main/
@@ -165,127 +204,145 @@ ScamShield/
 │               ├── v3_ml_model.json
 │               ├── v3_rule_model.json
 │               └── v3_model_config.json
+│
 └── ml/
     ├── server.py
     ├── models_v3/
     └── ...
-```
 
-## 7. Installazione
 
-### Requisiti
+## 8. Installation
 
-Sono necessari: - Android Studio; - JDK compatibile con il progetto; -
-Python 3; - un dispositivo Android oppure un emulatore; - per la
-modalità online, il server FastAPI.
+Requirements: 
+-Android Studio
+-JDK compatible with the project
+-Python 3
+-Android device or emulator
+-FastAPI server for online analysis
 
-### Progetto Android
+Android Application:
 
-1.  Aprire la cartella `ScamShield` con Android Studio.
-2.  Attendere la sincronizzazione Gradle.
-3.  Eseguire `Build → Make Project`.
-4.  Avviare l'app su un dispositivo o emulatore.
+1. Clone the repository:
 
-## 8. Avvio del server FastAPI
+git clone https://github.com/Ksteby/scamshield-android-.git
+cd scamshield-android-
 
-Entrare nella cartella:
+2. Open the project in Android Studio.
+3. Wait for Gradle synchronization.
+4. Run:
 
-``` text
-ScamShield/ml
-```
+Build → Make Project
 
-Attivare l'ambiente virtuale:
+5. Launch the application on an Android device or emulator.
 
-``` powershell
-.\.venv\Scripts\Activate.ps1
-```
+## 9. Running the FastAPI Server
 
-Avviare il server:
+Navigate to the Machine Learning directory:
 
-``` powershell
-uvicorn server:app --host 127.0.0.1 --port 8000
-```
+   cd ml
 
-Verificare il funzionamento aprendo:
+Activate the Python virtual environment:
 
-``` text
-http://127.0.0.1:8000
-```
+  .\.venv\Scripts\Activate.ps1
 
-La risposta prevista è:
+Start the server:
 
-``` json
-{
+  uvicorn server:app --host 127.0.0.1 --port 8000
+
+The API can be tested by opening:
+
+  http://127.0.0.1:8000
+
+Expected response:
+
+  {
   "application": "ScamShield API",
   "status": "online"
 }
-```
+ 
+ 
+ ## 10. Online Mode with the Android Emulator
 
-## 9. Modalità online con l'emulatore
+With the Android emulator running, execute:
 
-Con l'emulatore Android avviato, eseguire:
+  adb reverse tcp:8000 tcp:8000
 
-``` powershell
-adb reverse tcp:8000 tcp:8000 oppure
- & "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe"
-```
+The application uses:
+  http://10.0.2.2:8000/
+as the Retrofit BASE_URL.
 
-L'applicazione utilizza:
+Procedure
+1. Start the FastAPI server.
+2. Run adb reverse tcp:8000 tcp:8000.
+3. Launch ScamShield.
+4. Select Online mode.
+5.Enter or share a message.
+6. Press Analyze Message.
 
-``` text
-http://10.0.2.2:8000/
-```
+## 11. Offline Mode
 
-come `BASE_URL` di Retrofit.
+The offline mode does not require the FastAPI server.
 
-Procedura: 1. avviare FastAPI; 2. eseguire
-`adb reverse tcp:8000 tcp:8000`; 3. avviare ScamShield; 4. selezionare
-**Online**; 5. inserire o condividere un messaggio; 6. premere
-**Analizza messaggio**.
+-Open ScamShield.
+-Select Offline mode.
+-Enter a message.
+-Press Analyze Message.
 
-## 10. Modalità offline
+The message is analyzed directly on the device using the integrated V3 model.
 
-1.  Aprire l'applicazione.
-2.  Selezionare **Offline**.
-3.  Inserire un messaggio.
-4.  Premere **Analizza messaggio**.
+## 12. Testing
 
-Il server non è necessario.
+The following aspects were tested during development:
 
-## 11. Test effettuati
+-Spam messages in English and Italian
+-Legitimate messages
+-URL detection
+-Phone number detection
+-Urgency signals
+-Action requests
+-Offline analysis
+-Online analysis
+-Consistency between offline and online modes
+-Android Share functionality
+-Screen navigation
+-Text input handling
+-Analysis button functionality
 
-Durante lo sviluppo sono state verificate: - analisi di messaggi spam in
-italiano e inglese; - analisi di messaggi legittimi; - rilevamento di
-URL; - rilevamento di numeri di telefono; - rilevamento di segnali di
-urgenza; - rilevamento di richieste d'azione; - analisi offline; -
-analisi online; - coerenza tra modalità offline e online; - ricezione
-tramite Android Share; - navigazione tra le schermate; - gestione del
-campo di testo; - funzionamento del pulsante di analisi.
+13. Limitations
 
-## 12. Limitazioni
+The model was trained on SMS datasets and cannot guarantee correct detection of every possible type of scam.
 
-Il modello è stato addestrato su dataset di messaggi SMS e non può
-garantire il riconoscimento corretto di ogni possibile truffa.
+The displayed score represents a system risk score, not a calibrated probability that the message is actually fraudulent.
 
-Il punteggio visualizzato rappresenta un **punteggio di rischio del
-sistema**, non una probabilità calibrata che il messaggio sia realmente
-fraudolento.
+The online mode requires the FastAPI server to be running and reachable.
 
-La modalità online richiede che il server FastAPI sia attivo e
-raggiungibile.
+14. Future Improvements
 
-## 13. Possibili sviluppi futuri
+Possible future developments include:
 
--   utilizzo di dataset più grandi e diversificati;
--   aggiornamento periodico del modello;
--   supporto a ulteriori lingue;
--   miglioramento dell'analisi contestuale;
--   deployment del server su un'infrastruttura remota;
--   supporto a ulteriori tipologie di messaggi.
+-Using larger and more diverse datasets
+-Periodic model updates
+-Support for additional languages
+-Improved contextual analysis
+-Remote deployment of the backend
+-Support for additional message types
+-Automated ML model deployment
+-Continuous model evaluation
 
-## 14. Autore
+## 15. Author
 
-**ScamShield**\
-Progetto per l'esame di Mobile Development\
-Università degli Studi di Parma\
-KEMO TOUOHOU STEBY
+Kemo Touohou Steby
+
+Master's student in Data Science for Societal Challenges
+Université de Tours, France
+
+Background in Software Engineering
+Università degli Studi di Parma, Italy
+
+Areas of interest
+Data Science
+Machine Learning
+ML Engineering
+MLOps
+Software Engineering
+NLP
