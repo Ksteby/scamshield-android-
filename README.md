@@ -341,7 +341,7 @@ Possible future developments include:
 
 ### Message Scanner
 
-![ScamShield Scanner](screenshots/scanner.png)
+![ScamShield Scanner](screenshots/home-screen.png)
 
 ### Message Analysis
 
