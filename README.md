@@ -79,8 +79,11 @@ HybridAnalyzer  ↓                 │
           AnalysisResult
                  ↓
            ResultScreen
+```
 
 The offline and online modes use the same V3 model, allowing the two modes to produce consistent analysis results.
+
+--- 
 
 ## 4. Machine Learning
 
@@ -88,16 +91,16 @@ Dataset
 
 The combined dataset contains 9,572 messages:
 
-6,825 legitimate messages (ham)
-2,747 spam messages
+- 6,825 legitimate messages (ham)
+- 2,747 spam messages
 
 The dataset contains messages in both English and Italian.
 
 The dataset was divided into:
 
-80% development data
-20% independent final test set
-V3 Model
+- 80% development data
+- 20% independent final test set
+- V3 Model
 
 The final V3 system uses two complementary text representations.
 
@@ -114,23 +117,24 @@ In parallel, the system uses a Rule Analyzer based on 14 features.
 
 The analyzed signals include:
 
-Urgency
-Action requests
-Monetary information
-Sensitive information
-URLs
-Contact information
-Phone numbers
-Interactions between different signals
+- Urgency
+- Action requests
+- Monetary information
+- Sensitive information
+- URLs
+- Contact information
+- Phone numbers
+- Interactions between different signals
 
 The final score is obtained by combining the Machine Learning model and the Rule Analyzer.
 
-Final Test Results
-Metric	ML Model	Hybrid V3 System
-Accuracy	96.61%	97.34%
-Precision	98.21%	96.99%
-Recall	89.82%	93.64%
-F1-score	93.83%	95.28%
+### Final Test Results
+
+Metric	  |  ML Model	 |   Hybrid V3 System
+Accuracy	|   96.61%	 |   97.34%
+Precision	|   98.21%	 |   96.99%
+Recall	  |   89.82%	 |   93.64%
+F1-score  | 	93.83%	 |   95.28%
 
 The system uses a decision threshold of approximately 38.92/100.
 
@@ -138,48 +142,48 @@ Note: the displayed score represents the system's risk score and should not be i
 
 ## 5. Technologies
 
--Android
--Kotlin
--Android Studio
--Jetpack Compose
--Material 3
--ViewModel
--Retrofit
--Gson
--Android Intent / Share
--Local application assets
--Machine Learning & Backend
--Python
--FastAPI
--Uvicorn
--NumPy
--SciPy
--Scikit-learn
--Pandas
--Regular Expressions
--Development & Engineering
--Git
--GitHub
--REST API
--Gradle
+- Android
+- Kotlin
+- Android Studio
+- Jetpack Compose
+- Material 3
+- ViewModel
+- Retrofit
+- Gson
+- Android Intent / Share
+- Local application assets
+- Machine Learning & Backend
+- Python
+- FastAPI
+- Uvicorn
+- NumPy
+- SciPy
+- Scikit-learn
+- Pandas
+- Regular Expressions
+- Development & Engineering
+- Git
+- GitHub
+- REST API
+- Gradle
 
 ## 6. Skills Demonstrated
 
 This project demonstrates practical experience in:
 
--Android application development
--Kotlin and Jetpack Compose
--Software architecture
--Natural Language Processing (NLP)
--Supervised Machine Learning
--Text feature engineering
--TF-IDF representations
--Classification models
--Model evaluation
--Integration of ML models into mobile applications
--REST API development
--Android ↔ API communication
--Git and GitHub
+- Android application development
+- Kotlin and Jetpack Compose
+- Software architecture
+- Natural Language Processing (NLP)
+- Supervised Machine Learning
+- Text feature engineering
+- TF-IDF representations
+- Classification models
+- Model evaluation
+- Integration of ML models into mobile applications
+- REST API development
+- Android ↔ API communication
+- Git and GitHub
 
 ## 7. Project structure
 
@@ -214,11 +218,11 @@ ScamShield/
 ## 8. Installation
 
 Requirements: 
--Android Studio
--JDK compatible with the project
--Python 3
--Android device or emulator
--FastAPI server for online analysis
+- Android Studio
+- JDK compatible with the project
+- Python 3
+- Android device or emulator
+- FastAPI server for online analysis
 
 Android Application:
 
@@ -258,7 +262,7 @@ Expected response:
   {
   "application": "ScamShield API",
   "status": "online"
-}
+  }
  
  
  ## 10. Online Mode with the Android Emulator
@@ -271,22 +275,22 @@ The application uses:
   http://10.0.2.2:8000/
 as the Retrofit BASE_URL.
 
-Procedure
+### Procedure
 1. Start the FastAPI server.
 2. Run adb reverse tcp:8000 tcp:8000.
 3. Launch ScamShield.
 4. Select Online mode.
-5.Enter or share a message.
+5. Enter or share a message.
 6. Press Analyze Message.
 
 ## 11. Offline Mode
 
 The offline mode does not require the FastAPI server.
 
--Open ScamShield.
--Select Offline mode.
--Enter a message.
--Press Analyze Message.
+- Open ScamShield.
+- Select Offline mode.
+- Enter a message.
+- Press Analyze Message.
 
 The message is analyzed directly on the device using the integrated V3 model.
 
@@ -294,21 +298,21 @@ The message is analyzed directly on the device using the integrated V3 model.
 
 The following aspects were tested during development:
 
--Spam messages in English and Italian
--Legitimate messages
--URL detection
--Phone number detection
--Urgency signals
--Action requests
--Offline analysis
--Online analysis
--Consistency between offline and online modes
--Android Share functionality
--Screen navigation
--Text input handling
--Analysis button functionality
+- Spam messages in English and Italian
+- Legitimate messages
+- URL detection
+- Phone number detection
+- Urgency signals
+- Action requests
+- Offline analysis
+- Online analysis
+- Consistency between offline and online modes
+- Android Share functionality
+- Screen navigation
+- Text input handling
+- Analysis button functionality
 
-13. Limitations
+## 13. Limitations
 
 The model was trained on SMS datasets and cannot guarantee correct detection of every possible type of scam.
 
@@ -316,22 +320,22 @@ The displayed score represents a system risk score, not a calibrated probability
 
 The online mode requires the FastAPI server to be running and reachable.
 
-14. Future Improvements
+## 14. Future Improvements
 
 Possible future developments include:
 
--Using larger and more diverse datasets
--Periodic model updates
--Support for additional languages
--Improved contextual analysis
--Remote deployment of the backend
--Support for additional message types
--Automated ML model deployment
--Continuous model evaluation
+- Using larger and more diverse datasets
+- Periodic model updates
+- Support for additional languages
+- Improved contextual analysis
+- Remote deployment of the backend
+- Support for additional message types
+- Automated ML model deployment
+- Continuous model evaluation
 
 ## 15. Author
 
-Kemo Touohou Steby
+### Kemo Touohou Steby
 
 Master's student in Data Science for Societal Challenges
 Université de Tours, France
@@ -339,10 +343,10 @@ Université de Tours, France
 Background in Software Engineering
 Università degli Studi di Parma, Italy
 
-Areas of interest
-Data Science
-Machine Learning
-ML Engineering
-MLOps
-Software Engineering
-NLP
+### Areas of interest
+- Data Science
+- Machine Learning
+- ML Engineering
+- MLOps
+- Software Engineering
+- NLP
