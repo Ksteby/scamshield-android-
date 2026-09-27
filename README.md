@@ -188,6 +188,8 @@ This project demonstrates practical experience in:
 
 ## 7. Project structure
 
+
+```text
 ScamShield/
 ├── app/
 │   └── src/main/
@@ -214,6 +216,7 @@ ScamShield/
     ├── server.py
     ├── models_v3/
     └── ...
+```    
 
 
 ## 8. Installation
